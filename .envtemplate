@@ -1,0 +1,12 @@
+LOL_API_KEY=RGAPI-6562fc6e-b084-4818-a5f3-6192a445d48e
+API_ENDPOINT=https://na1.api.riotgames.com
+API_SUMMONER_ENDPOINT=/lol/summoner/v3/summoners/by-name/
+API_MATCHLIST_ENDPOINT=/lol/match/v3/matchlists/by-account/
+API_MATCH_ENDPOINT=/lol/match/v3/matches/
+VERSION_ENDPOINT=https://ddragon.leagueoflegends.com/api/versions.json
+CHAMPION_ENDPOINT=https://ddragon.leagueoflegends.com/cdn/{{version}}/data/en_US/champion.json
+ITEM_ENDPOINT=https://ddragon.leagueoflegends.com/cdn/{{version}}/data/en_US/item.json
+RUNES_REFORGED_ENDPOINT=https://ddragon.leagueoflegends.com/cdn/{{version}}/data/en_US/runesReforged.json
+SUMMONER_SPELLS_ENDPOINT=https://ddragon.leagueoflegends.com/cdn/{{version}}/data/en_US/summoner.json
+STATIC_ASSET_IMAGE_PATH=http://ddragon.leagueoflegends.com/cdn/{{version}}/img/
+STATIC_ASSET_IMAGE_BASE_PATH=https://ddragon.leagueoflegends.com/cdn/

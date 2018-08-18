@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "outDir": "api",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "lib": [
+      "DOM",
+      "ES6",
+      "DOM.Iterable",
+      "ScriptHost"
+    ],
+    "target": "ES5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "types": [
+      "reflect-metadata",
+      "@types/node",
+      "@types/express",
+      "@types/mongoose",
+      "@types/q"
+    ],
+  }
+}
