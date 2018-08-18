@@ -38,30 +38,6 @@ export class MatchService {
     
   }
 
-  public getPlayers (match: Game): MatchResultPlayer[] {
-
-    let playerResults: MatchResultPlayer[] = [];
-
-    _.forEach(match.participants, participant => {
-
-      const id: number = participant.participantId,
-
-          participantIdentity: ParticipantIdentity = <ParticipantIdentity>_.find(match.participantIdentities, { participantId: id }),
-
-          champion: Champion = this.league.getChampion(participant.championId);
-
-      playerResults.push({
-          summonerName: participantIdentity.player.summonerName,
-          champion: this.formatting.formatChampion(champion),
-          team: participant.teamId
-      });
-
-    });
-
-    return playerResults;
-
-  }
-
   /**
    * @method getMatch
    * @param gameId

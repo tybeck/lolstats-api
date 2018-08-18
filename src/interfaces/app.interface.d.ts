@@ -73,5 +73,6 @@ export interface FormattedRunesReforged {
 export interface MatchResultPlayer {
   summonerName: string;
   champion: FormattedChampion;
+  default: boolean;
   team: number;
 }

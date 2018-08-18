@@ -10,7 +10,6 @@ import { GAME_MODES } from '../constants/lol.constant';
 import { Server } from '../server';
 
 import { LeagueService } from './league.service';
-import { MatchService } from './match.service';
 
 import {
     Environment,
@@ -21,12 +20,9 @@ import {
     FormattedSummonerSpell,
     MatchResultPlayer
 } from '../interfaces/app.interface';
-import {Champion, Game, Item, Participant, ParticipantIdentity, RunesReforged, SummonerSpell} from '../interfaces/lol.interface';
+import { Champion, Game, Item, Participant, ParticipantIdentity, RunesReforged, SummonerSpell } from '../interfaces/lol.interface';
 
 import { getEnvironmentalVariables } from '../utils/env.util';
-
-import { container } from '../inversify.config';
-
 
 const env: Environment = getEnvironmentalVariables();
 
@@ -100,6 +96,44 @@ export class FormattingService {
     }
 
     /**
+     * @method formatPlayers
+     * @param match
+     */
+
+    public formatPlayers (match: Game, summonerName: string): MatchResultPlayer[] {
+
+        let playerResults: MatchResultPlayer[] = [];
+
+        _.forEach(match.participants, participant => {
+
+            const id: number = participant.participantId,
+
+                participantIdentity: ParticipantIdentity = <ParticipantIdentity>_.find(match.participantIdentities, { participantId: id }),
+
+                champion: Champion = this.league.getChampion(participant.championId);
+
+            let def: boolean = false;
+
+            if (summonerName === participantIdentity.player.summonerName) {
+
+                def = true;
+
+            }
+
+            playerResults.push({
+                summonerName: participantIdentity.player.summonerName,
+                champion: this.formatChampion(champion),
+                team: participant.teamId,
+                default: def
+            });
+
+        });
+
+        return playerResults;
+
+    }
+
+    /**
      * @method _getCspm
      * Creep score per minute
      * @param participant
@@ -158,8 +192,6 @@ export class FormattingService {
 
     public formatMatch (match: Game, name: string): FormattedMatch {
 
-        const matchService: MatchService = container.get(IDENTIFIERS.MatchService);
-
         const participantIdentity: ParticipantIdentity = <ParticipantIdentity>_.find(match.participantIdentities, { player: { summonerName: name } });
 
         if (participantIdentity) {
@@ -176,7 +208,7 @@ export class FormattingService {
 
                     items: Item[] = this.league.getItemsFromParticipant(participant),
 
-                    players: MatchResultPlayer[] = matchService.getPlayers(match),
+                    players: MatchResultPlayer[] = this.formatPlayers(match, name),
 
                     perkPrimary: RunesReforged = this.league.getRuneReforged(participant.stats.perkPrimaryStyle),
 
