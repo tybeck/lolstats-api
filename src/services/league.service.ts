@@ -85,8 +85,6 @@ export class LeagueService {
         ])
             .then(results => {
 
-                console.log('resultss!!!', results);
-
                 return Bluebird.resolve(true);
 
             });

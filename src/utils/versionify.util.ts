@@ -27,8 +27,6 @@ function Versionify (): void {
 
     });
 
-    console.log(env.SUMMONER_SPELLS_ENDPOINT);
-
 }
 
 export {
